@@ -1,46 +1,81 @@
-# Shandong-GIS-Algorithm-Platform
-A lightweight GIS algorithm platform built with C# WinForms, implementing map rendering, area calculation, perimeter calculation and point-in-polygon detection using Shandong Province boundary data.
+# Shandong GIS Algorithm Platform
 
-# Simple GIS Algorithm Platform (C#)
+A lightweight C# WinForms GIS algorithm platform for visualizing Shandong Province boundary data and testing basic spatial analysis algorithms.
 
-## Project Overview
+## Overview
 
-This project implements a lightweight GIS algorithm platform using C# WinForms. 
-The system visualizes the boundary of Shandong Province and provides several 
-fundamental spatial analysis functions implemented from scratch.
+This project loads geographic coordinate data from CSV, renders the boundary on a WinForms canvas, and provides several core GIS calculations implemented in C#.
+
+The repository is suitable for learning how fundamental GIS operations work without relying on a full GIS engine.
 
 ## Features
 
-- Load geographic coordinate data from CSV
-- Map rendering with coordinate transformation
-- Boundary perimeter calculation
-- Polygon area calculation
-- Point-in-polygon detection
-- Interactive coordinate click detection
-
-## System Architecture
-
-<img width="554" height="355" alt="image" src="https://github.com/user-attachments/assets/195649af-a26b-4d66-b6bd-9b5aea5dcd5d" />
-
-
-## Dataset
-
-The boundary coordinates of Shandong Province were extracted from a shapefile dataset and processed using ArcGIS Pro. The main land boundary was exported as a CSV file containing longitude and latitude coordinates.
+- Load longitude/latitude coordinate data from CSV
+- Render geographic boundary data in a WinForms interface
+- Convert geographic coordinates to screen coordinates
+- Calculate polygon area
+- Calculate boundary perimeter
+- Detect whether a clicked point is inside a polygon
+- Interact with the map through a simple desktop UI
 
 ## Algorithms Implemented
 
-- Coordinate Transformation
-- Polygon Area Calculation
-- Perimeter Calculation
-- Point-in-Polygon Detection
+- Coordinate transformation from geographic coordinates to screen coordinates
+- Shoelace formula for polygon area calculation
+- Distance-based perimeter calculation
+- Point-in-polygon detection
+- CSV-based geographic data loading
 
-## Technology Stack
+## Tech Stack
 
 - C#
 - .NET WinForms
-- ArcGIS Pro (data preprocessing)
+- Visual Studio
+- CSV boundary data exported from ArcGIS Pro preprocessing
+
+## Project Structure
+
+```text
+.
+├── Code/
+│   ├── WindowsFormsApp1.sln   # Visual Studio solution file
+│   └── Form1.cs               # Main WinForms UI and GIS algorithm logic
+├── Shandong_points.csv        # Sample Shandong Province boundary coordinates
+├── Figure                     # Placeholder/figure asset file
+├── LICENSE                    # Project license
+└── README.md                  # Project documentation
+```
 
 ## How to Run
 
-1. Clone the repository
+1. Clone or download this repository.
+2. Open `Code/WindowsFormsApp1.sln` in Visual Studio.
+3. Build and run the WinForms project.
+4. In the application, load `Shandong_points.csv` when prompted.
+5. Use the toolbar/status actions to render the boundary and run area, perimeter, or point-in-polygon operations.
 
+## Dataset
+
+`Shandong_points.csv` contains processed longitude and latitude coordinates for the Shandong Province boundary. The source boundary was prepared from shapefile data and exported through ArcGIS Pro.
+
+Expected CSV format:
+
+```text
+latitude,longitude
+```
+
+Each row represents one boundary point.
+
+## Notes for Readers
+
+The main implementation is currently concentrated in `Code/Form1.cs`. For a larger version of this project, a clean next step would be to split the logic into separate classes/files, for example:
+
+- `GeoPoint.cs` for coordinate data models
+- `GeoDataProcessor.cs` for CSV loading and coordinate conversion
+- `GeometryHelper.cs` for area and perimeter algorithms
+- `MapPainter.cs` for rendering logic
+- `ClickDetector.cs` for interaction logic
+
+## System Architecture
+
+<img width="554" height="355" alt="System architecture" src="https://github.com/user-attachments/assets/195649af-a26b-4d66-b6bd-9b5aea5dcd5d" />
